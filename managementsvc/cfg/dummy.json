@@ -1,0 +1,23 @@
+{
+  "current": {
+    "name": "dummy",
+    "type": "dummy",
+    "version": "1.0.0",
+    "url": "http://example.com",
+    "resourceId": "dummy_resource_id"
+  },
+  "next": {
+    "name": "dummy_next",
+    "type": "dummy",
+    "version": "1.0.1",
+    "url": "http://example.com/next",
+    "resourceId": "dummy_resource_id_next"
+  },
+  "previous": {
+    "name": "dummy_previous",
+    "type": "dummy",
+    "version": "0.0.1",
+    "url": "http://example.com/previous",
+    "resourceId": "dummy_resource_id_previous"
+  }
+}

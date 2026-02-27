@@ -11,11 +11,23 @@ fi
 
 CONFIG_FILE="$1"
 
+BUILD_ARCH=$(jq -r .arch "$CONFIG_FILE")
+
 GROUP=${GROUP:-alexbenn-test}
 LOCATION=${LOCATION:-eastus2}
 RUNNER_VM_NAME=${RUNNER_VM_NAME:-disk-spinner}
-RUNNER_VM_SKU=${RUNNER_VM_SKU:-Standard_D4s_v7}
 DELETE_VM=${DELETE_VM:-true}
+
+if [ -z $RUNNER_VM_SKU ]; then
+    if [ "$BUILD_ARCH" = "x86_64" ]; then
+        RUNNER_VM_SKU=Standard_D4s_v7
+    elif [ "$BUILD_ARCH" = "arm64" ]; then
+        RUNNER_VM_SKU=Standard_D4ps_v6
+    else
+        echo "Error: Unsupported architecture $BUILD_ARCH. Supported values are x86_64 and arm64."
+        exit 1
+    fi
+fi
 
 az login --identity
 
